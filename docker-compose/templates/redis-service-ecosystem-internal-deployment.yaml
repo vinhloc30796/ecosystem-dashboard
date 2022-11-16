@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -c
+    kompose.version: 1.26.1 (a9d05d509)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: redis-service-ecosystem-internal
+  name: redis-service-ecosystem-internal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: redis-service-ecosystem-internal
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -c
+        kompose.version: 1.26.1 (a9d05d509)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/internal: "true"
+        io.kompose.service: redis-service-ecosystem-internal
+    spec:
+      containers:
+        - image: redis:4.0-alpine
+          name: redis.service.ecosystem.internal
+          resources: {}
+      restartPolicy: Always
+status: {}
